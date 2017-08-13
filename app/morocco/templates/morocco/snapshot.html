@@ -1,0 +1,16 @@
+{% extends 'morocco/_layout.html' %}
+{% block body %}
+    <div class="row">
+        <div class="container">
+            <p class="flow-text">This snapshot was based on commit
+                <a href="{{ data.commit_url }}">
+                    <strong class="blue-text yellow lighten-4">{{ data.short_sha }}</strong>
+                </a> submitted on
+                <strong class="yellow lighten-4">{{ data.commit_date_str }}.</strong>
+                {% if data.download_url %}
+                    The build can be downloaded <a href="{{ data.download_url }}"><strong>here</strong></a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

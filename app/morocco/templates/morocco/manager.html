@@ -1,0 +1,12 @@
+{% extends 'morocco/_layout.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>Sync snapshots</h1>
+            <form action="{% url 'morocco:sync_snapshots' %}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn" name="Sync Snapshots">
+            </form>
+        </div>
+    </div>
+{% endblock %}

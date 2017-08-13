@@ -1,0 +1,49 @@
+{% extends "morocco/_layout.html" %}
+{% block body %}
+    <div class="row">
+        <div class="container">
+            <table class="highlight table-condense">
+                <thead>
+                <tr>
+                    <th>SHA</th>
+                    <th>Author</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    {#                    {% if current_user.is_authenticated and current_user.is_admin() %}#}
+                    {#                        <th></th>#}
+                    {#                        <th></th>#}
+                    {#                    {% endif %}#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for each in data %}
+                    <tr>
+                        <td><code><a href="{% url 'morocco:snapshot' each.sha %}">{{ each.short_sha }}</a></code></td>
+                        <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 8rem">{{ each.commit_author }}</td>
+                                                <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 30rem">{{ each.commit_subject }}</td>
+                                                <td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">{{ each.commit_date_str }}</td>
+                        {#                        {% if current_user.is_authenticated and current_user.is_admin() %}#}
+                        {#                            <td>#}
+                        {#                                <form action="{{ url_for('post_build', sha=build.id) }}" method="post">#}
+                        {#                                    <input type="hidden" name="action" value="refresh">#}
+                        {#                                    <input type="hidden" name="redirect" value="{{ url_for('get_builds') }}">#}
+                        {#                                    <button type="submit" value="Refresh" class="x-btn-mini btn btn-flat">#}
+                        {#                                        <i class="material-icons">refresh</i></button>#}
+                        {#                                </form>#}
+                        {#                            </td>#}
+                        {#                            <td>#}
+                        {#                                <form action="{{ url_for('post_build', sha=build.id) }}" method="post">#}
+                        {#                                    <input type="hidden" name="action" value="suppress">#}
+                        {#                                    <input type="hidden" name="redirect" value="{{ url_for('get_builds') }}">#}
+                        {#                                    <button type="submit" value="Refresh" class="x-btn-mini btn btn-flat">#}
+                        {#                                        <i class="material-icons">delete</i></button>#}
+                        {#                                </form>#}
+                        {#                            </td>#}
+                        {#                        {% endif %}#}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
