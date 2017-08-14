@@ -13,4 +13,29 @@
             </p>
         </div>
     </div>
+    <div class="fixed-action-btn" style="position: absolute">
+        <a class="btn-floating btn-large">
+            <i class="large material-icons">build</i>
+        </a>
+        <ul>
+            <li>
+                <form action="{% url 'morocco:update_snapshot' data.sha %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="refresh">
+                    <button type="submit" value="Refresh" class="btn btn-floating">
+                        <i class="material-icons">refresh</i>
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form action="{% url 'morocco:update_snapshot' data.sha %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="rebuild">
+                    <button type="submit" value="Add" class="btn btn-floating">
+                        <i class="material-icons">add</i>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
 {% endblock %}
